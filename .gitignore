@@ -1,0 +1,3 @@
+.var
+/docker/*
+!/docker/.gitkeep
