@@ -7,7 +7,7 @@ services:
       - database
     restart: unless-stopped
     environment:
-      PWA_UPSTREAM: pwa:3000
+      PWA_UPSTREAM: pwa:5173
       SERVER_NAME: ${SERVER_NAME:-localhost}, php:80
       MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
@@ -33,6 +33,12 @@ services:
       - target: 443
         published: ${HTTP3_PORT:-443}
         protocol: udp
+
+  pwa:
+    image: ${IMAGES_PREFIX:-}-pwa
+    container_name: ${IMAGES_PREFIX:-}-pwa
+    environment:
+      API_ENTRYPOINT: http://php
 
   database:
     container_name: ${IMAGES_PREFIX:-}-db

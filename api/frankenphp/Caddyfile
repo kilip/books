@@ -77,11 +77,12 @@
 			)
 		)
 		|| path('/favicon.ico', '/manifest.json', '/robots.txt', '/sitemap*', '/_next*', '/__next*')
+		|| path('/app*', '/@id*', '/@vite*','/node_modules/*')
 		|| query({'_rsc': '*'})`
 
 	# Comment the following line if you don't want Next.js to catch requests for HTML documents.
 	# In this case, they will be handled by the PHP app.
-	reverse_proxy @pwa http://{$PWA_UPSTREAM}
+	# reverse_proxy @pwa http://{$PWA_UPSTREAM}
 
 	php_server
 }

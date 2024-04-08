@@ -20,6 +20,20 @@ services:
       - host.docker.internal:host-gateway
     tty: true
 
+  pwa:
+    build:
+      context: ./pwa
+      target: dev
+    volumes:
+      - ./pwa:/srv/app
+    environment:
+      API_PLATFORM_CREATE_CLIENT_ENTRYPOINT: http://php
+      API_PLATFORM_CREATE_CLIENT_OUTPUT: .
+      # On Linux, you may want to comment the following line for improved performance
+      WATCHPACK_POLLING: "true"
+    ports:
+      - 5173:5173
+
   database:
     ports:
       - "5432"
